@@ -1,31 +1,24 @@
 package pages;
 
-import common.BasePage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.pages.WebElementFacade;
+import net.thucydides.core.annotations.DefaultUrl;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends BasePage {
+@DefaultUrl("https://www.saucedemo.com/")
+public class LoginPage extends PageObject {
 
     @FindBy(id="user-name")
-    private WebElement txtUserName;
+    private WebElementFacade txtUserName;
 
     @FindBy(id="password")
-    private WebElement txtPassword;
+    private WebElementFacade txtPassword;
 
     @FindBy(id="login-button")
-    private WebElement btnLogin;
+    private WebElementFacade btnLogin;
 
     @FindBy(xpath = "//div[@class='error-message-container error']/h3")
-    private WebElement msgError;
-
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
-
-    public void openSaucePage(){
-        driver.get("https://www.saucedemo.com/");
-    }
+    private WebElementFacade msgError;
 
     public void logInWithCredentials(String username, String password){
         txtUserName.sendKeys(username);
@@ -37,4 +30,7 @@ public class LoginPage extends BasePage {
         return msgError.getText();
     }
 
+    public String returnCurrentURL(){
+        return getDriver().getCurrentUrl();
+    }
 }

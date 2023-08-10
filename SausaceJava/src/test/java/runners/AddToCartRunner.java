@@ -1,18 +1,17 @@
 package runners;
 
-
 import io.cucumber.junit.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
 import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        dryRun = false,
-        features = "src/test/resources/features/login.feature",
+        dryRun = true,
+        features = "src/test/resources/features/add_to_cart.feature",
         glue = "stepdefinitions",
-        snippets = CucumberOptions.SnippetType.CAMELCASE,
-        plugin = {"pretty", "html:target/cucumber-reports"}
+        snippets = CucumberOptions.SnippetType.CAMELCASE
+        ,plugin = {"pretty", "html:target/cucumber-reports"}
         ,monochrome = true
 )
-public class LoginRunner {
+public class AddToCartRunner {
 }

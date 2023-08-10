@@ -7,11 +7,14 @@ import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import net.serenitybdd.core.annotations.events.AfterScenario;
 import net.serenitybdd.core.annotations.events.BeforeScenario;
-import org.junit.After;
-import org.junit.Before;
+import net.thucydides.core.annotations.Steps;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import pages.InventoryPage;
 import pages.LoginPage;
+import steps.CommonSteps;
+import utils.DriverManager;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -20,22 +23,15 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginStepDefinitions {
 
-    private WebDriver driver;
+    @Steps
     private LoginPage fromLoginPage;
 
-    @BeforeScenario
-    public void setUp(){
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        fromLoginPage = new LoginPage(driver);
-    }
+    @Steps
+    private CommonSteps commonSteps;
 
     @Given("I enter to sauce page")
     public void iEnterToSaucePage() {
-
-        fromLoginPage.openSaucePage();
+        commonSteps.openTheSaucePage();
     }
     @When("I enter as {string} with the password {string}")
     public void iEnterAsWithThePassword(String userType, String password) {
@@ -43,14 +39,10 @@ public class LoginStepDefinitions {
     }
     @Then("I should see into URL the {string}")
     public void iShouldSeeIntoUrlThe(String strURL) {
-        assertThat(driver.getCurrentUrl(),containsString(strURL));
+        assertThat(fromLoginPage.returnCurrentURL(),containsString(strURL));
     }
     @Then("I should see the error message {string}")
     public void iShouldSeeTheErrorMessage(String errorMessage) {
-        assertThat(fromLoginPage.returnErrorMessage(), containsString(errorMessage));
-    }
-    @AfterScenario
-    public void shutDown(){
-        driver.quit();
+        assertThat("the message error wasn't deployed",fromLoginPage.returnErrorMessage(), containsString(errorMessage));
     }
 }
