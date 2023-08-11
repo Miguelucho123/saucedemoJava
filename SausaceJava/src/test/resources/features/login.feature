@@ -1,6 +1,6 @@
 #Author: Miguel Ángel Gutiérrez Echeverri
 # language: en
-  Feature: Tests for each functionality of login for the page sauce
+Feature: Tests for each functionality of login for the page sauce
 
     @LoginSuccess
     Scenario: As standard user I want to login successfully

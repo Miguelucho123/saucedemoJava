@@ -2,8 +2,8 @@
 # language: en
 Feature: Checkout flow for sauce page
 
-  @AddOneProduct
-  Scenario: As standard user I want to add one product to the car successfully
+  @E2E
+  Scenario: As standard user I want to buy any product
     Given I enter to sauce page as "standard user"
     When I select the product called "Sauce Labs Backpack"
     And Complete the checkout process with the data

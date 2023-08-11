@@ -10,9 +10,8 @@ import org.junit.runner.RunWith;
         dryRun = false,
         features = "src/test/resources/features/login.feature",
         glue = "stepdefinitions",
-        snippets = CucumberOptions.SnippetType.CAMELCASE,
-        plugin = {"pretty", "html:target/cucumber-reports"}
-        ,monochrome = true
+        snippets = CucumberOptions.SnippetType.CAMELCASE
+
 )
 public class LoginRunner {
 }

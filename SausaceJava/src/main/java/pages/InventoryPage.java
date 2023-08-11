@@ -52,5 +52,20 @@ public class InventoryPage extends PageObject {
         cartButton.click();
     }
 
+    public void clickOnProductName(String product){
+        WebElement productName = find(
+                By.xpath("//div[text()='"+product+"']"));
+        productName.click();
+    }
+
+    public void clickOnRemoveItem(String product){
+        WebElement removeButton = find(
+                By.xpath("//div[text()='"+product+"']/ancestor::div[@class='inventory_item']//button"));
+        removeButton.click();
+    }
+
+    public WebElementFacade returnCartElement(){
+        return cartCounter;
+    }
 
 }

@@ -7,11 +7,11 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         dryRun = false,
-        features = "src/test/resources/features/add2cart.feature",
+        features = "src/test/resources/features/e2e.feature",
         glue = "stepdefinitions",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 
 
 )
-public class AddToCartRunner {
+public class E2ERunner {
 }
